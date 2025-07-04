@@ -1,4 +1,4 @@
-package com.sunset.spring.hello;
+package com.sunset.spring.ex.hello;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
