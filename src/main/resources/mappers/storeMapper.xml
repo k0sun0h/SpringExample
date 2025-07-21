@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+해당 xml에서 사용할 태그 규칙 지정 dtd
+mydatis 태그 규칙을 적용하기 위해 mybatis에서 제공하는 dtd를 적용 
+-->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 특정 Repository interface와 연결 설정 -->
+ <mapper namespace="com.sunset.spring.test.database.repository.StoreRepository">
+
+	<!-- 연결된 Repository의 특정 메소드에 대한 구현 (query) -->
+    <select id="selectStoreList"
+    resultType="com.sunset.spring.test.database.domain.Store">
+        SELECT 
+			`id`
+			, `name`
+			, `phoneNumber`
+			, `address`
+			, `businessNumber`
+			, `introduce`
+			, `createdAt`
+			, `updatedAt`
+		FROM 
+			`store`
+	</select>
+
+</mapper>
