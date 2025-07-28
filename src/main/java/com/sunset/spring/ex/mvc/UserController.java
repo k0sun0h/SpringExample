@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sunset.spring.ex.mvc.domain.User;
 import com.sunset.spring.ex.mvc.service.UserService;
@@ -29,4 +31,26 @@ public class UserController {
 		return "mvc/userInfo";
 	}
 	
+	@PostMapping("/create")
+	public String createUser(
+			@RequestParam("name") String name
+			, @RequestParam("birthday") String birthday
+			, @RequestParam("email") String email
+			, Model model) {
+
+		User user = new User();
+		user.setName(name);
+		user.setYyyymmdd(birthday);
+		user.setEmail(email);
+		
+		int count = userService.addUserByObject(user);
+		model.addAttribute("result", user);
+		
+		return "mvc/userInfo";
+	}
+			
+	@GetMapping("/input")
+	public String inputUser() {
+		return "mvc/userInput";
+	}
 }

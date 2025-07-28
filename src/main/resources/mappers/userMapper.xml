@@ -23,4 +23,38 @@
 			1
 	</select>
 
+	<insert id="insertUser" parameterType="map">
+		INSERT INTO
+			`new_user`
+		(
+			`name`
+			, `yyyymmdd`
+			, `email`
+		)
+		VALUE 
+		(
+			#{name}
+			, #{birthday}
+			, #{email}
+		)
+	
+	</insert>
+	
+	<insert id="insertUserByObject" 
+	parameterType="com.sunset.spring.ex.mvc.domain.User"
+	useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+			`new_user`
+		(
+			`name`
+			, `yyyymmdd`
+			, `email`
+		)
+		VALUE 
+		(
+			#{name}
+			, #{yyyymmdd}
+			, #{email}
+		)
+	</insert>
 </mapper>

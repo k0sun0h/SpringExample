@@ -19,4 +19,14 @@ public class UserService {
 		return user;
 	}
 	
+	public int addUser(String name, String birthday, String email) {
+		int count = userRepository.insertUser(name, birthday, email);
+		return count;
+		
+	}
+	
+	public int addUserByObject(User user) {
+		int count = userRepository.insertUserByObject(user);
+		return count;
+	}
 }

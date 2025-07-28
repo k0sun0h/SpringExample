@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>공인중개사 정보</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+	
+	<div class="container">
+	
+		<h1>공인중개사 정보</h1>
+		
+		<table class="table text-center">
+			<tr>
+				<td>id</td>
+				<td th:text="${realtor.id}">9</td>
+			</tr>
+			<tr>
+				<td>상호명</td>
+				<td th:text="${realtor.office}">대박공인중개사</td>
+			</tr>
+			<tr>
+				<td>전화번호</td>
+				<td th:text="${realtor.phoneNumber}">010-222-1111</td>
+			</tr>
+			<tr>
+				<td>주소</td>
+				<td th:text="${realtor.address}">서울시 서초구</td>
+			</tr>
+			<tr>
+				<td>등급</td>
+				<td th:text="${realtor.grade}">안심중개사</td>
+			</tr>
+		</table>
+	</div>
+	
+</body>
+</html>
