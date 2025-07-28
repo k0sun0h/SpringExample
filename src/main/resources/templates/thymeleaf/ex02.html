@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Thymeleaf 반복문</title>
+</head>
+<body>
+	<h2>1. 숫자 반복 </h2>
+	<!--  0 ~ 5 -->
+	<div th:each="i : ${#numbers.sequence(0, 5)}" th:text="${i}"></div>
+	
+	<h2>2. List 반복문 - 문자열 </h2>
+	<div th:each="fruit, status : ${fruitList}">
+		<span th:text="${fruit}"></span>
+		<span th:text="|${status.index} ${status.count}|"></span>
+	</div>
+	
+	<h2>3. List 반복문 - Map</h2>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>이름</th>
+				<th>나이</th>
+				<th>취미</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user : ${userList}">
+				<td th:text="${user.name}">유재석</td>
+				<td th:text="${user.age}">52</td>
+				<td th:text="${user.hobby}">진행하기</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

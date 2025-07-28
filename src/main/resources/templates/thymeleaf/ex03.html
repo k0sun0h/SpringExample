@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>날짜와 문자열</title>
+</head>
+<body>
+
+	<h2>1. 날짜 객체</h2>
+	<div th:text="|Date : ${date}|"></div>
+	<div th:text="|LocalDate : ${localDate}|"></div>
+	<div th:text="|LocalDateTime : ${localDateTime }|"></div>
+
+	<h2>2. 날짜 포맷</h2>
+	<div th:text="|Date : ${#dates.format(date, 'yyyy년 MM월 dd일 HH시 mm분 ss초')}|"></div>
+	<div th:text="|LocalDate : ${#temporals.format(localDate, 'yyyy년 M월 d일')}|"></div>
+	<div th:text="|LocalDateTime : ${#temporals.format(localDateTime, 'yyyy/MM/dd HH:mm:ss')}|"></div>
+	
+	
+	<h2>3. String 함수</h2>
+	<div th:with="string1 = 'No pain. No gain.'">
+		<h3>문자열 길이</h3>
+		<h4 th:text="${#strings.length(string1)}"></h4>
+		
+		<h3>특정 문자열이 존재하는지 확인</h3>
+		<h4 th:text="| No가 존재하는가? ${#strings.contains(string1, 'No')}|"></h4>
+		<h4 th:text="|no가 존재하는가? ${#strings.contains(string1, 'no')}|"></h4>
+		
+		<h4 th:if="${#strings.containsIgnoreCase(string1, 'no')}">
+			대소문자 구분 없이 문자열 존재
+		</h4>
+		
+		<h3>특정 문자열로 시작, 끝나는지 확인</h3>
+		<h4 th:if="${#strings.startsWith(string1, 'No')}">
+			No로 시작한다
+		</h4>
+		
+		<h4 th:if="${#strings.endsWith(string1, 'gain.')}">
+			gain으로 끝난다
+		</h4>
+	</div>
+	
+	<div th:with="string2 = 'I love chicken'">
+		<h3>문자열 치환</h3>
+		<h4 th:text="${#strings.replace(string2, 'chicken', 'bread')}"></h4>
+		<h4 th:text="${string2}"></h4>
+		
+		<h3>문자열 자르기</h3>
+		<h4 th:text="${#strings.substring(string2, 2, 6)}"></h4>
+		
+		<h3>문자열 쪼개기</h3>
+		<h4 th:text="${#strings.arraySplit(string2, ' ')[0]}"></h4>
+		<h4 th:text="${#strings.arraySplit(string2, ' ')[1]}"></h4>
+		<h4 th:text="${#strings.arraySplit(string2, ' ')[2]}"></h4>
+		
+		<h3>모두 소문자로 변경 (Lower Case)</h3>
+		<h4 th:text="${#strings.toLowerCase(string2)}"></h4>
+		<h3>모두 대문자로 변경 (Upper Case)</h3>
+		<h4 th:text="${#strings.toUpperCase(string2)}"></h4>
+	
+	</div>
+	
+	<div th:with="string3 = '          hello         '">
+		<h3>필요 없는 앞뒤 공백 제거</h3>
+		<textarea th:text="${string3}"></textarea>
+		<textarea th:text="${#strings.trim(string3)}"></textarea>
+	</div>
+	 
+</body>
+</html>
