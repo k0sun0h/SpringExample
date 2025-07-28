@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Thymeleaf 변수와 조건문</title>
+</head>
+<body>
+	<h2>1. 변수</h2>
+	<div th:with="number=100">
+		<h4 th:text="${number}"></h4>
+		<h4>[[${number}]]</h4>
+	</div>
+	<h4 th:text="${number}"></h4>
+	<!-- 변수 정의 내 scope에서만 사용 가능 == 변수가 선언된 하위 태그에서만 사용 가능 -->
+	<!-- <div th:text="${number}"></div> -->
+		
+	<h2>2. 태그 없이 thymeleaf 사용</h2>
+	<!-- 랜더링 되지 않는 태그 thymeleaf 태그 -->
+	<!-- block 태그는 최종 결과 html에 포함되지 않는다 -->
+	<th:block th:with="number1 = 200, number2 = 250">
+		<h4>[[${number1}]] [[${number2}]]</h4>
+		
+		<h4 th:text="${number1}"></h4>
+		<h4 th:text="${number2}"></h4>
+		<h4 th:text="${number1 + number2}"></h4>
+
+		<h4 th:text="'결과 : ' + ${number1 + number2}"></h4>
+		<h4>결과 : [[${number1 + number2}]]</h4>
+		<h4 th:text="|결과 : ${number1 + number2}|"></h4>
+	</th:block>
+	
+	<h2>3. 태그 나타내기</h2>
+	<!-- th:text 는 escape 처리가 된다 -->
+	<div th:text="'<b>진한글자</b>'"></div>
+	<div th:utext="'<b>진한글자</b>'"></div>
+	
+	<h2>4. 조건문 - else if, else 구문 없음</h2>
+	<th:block th:with="age = 25">
+		<h4 th:if="true">true 값일때 해당 태그가 포함된다</h4>
+		<h4 th:if="${age > 20}">나이가 20살보다 많다</h4>
+		<h4 th:if="${age < 30}">30살 보다 어리다</h4>
+		<h4 th:if="${age == 25}">나이가 25살이다</h4>
+		
+		<!-- unless - if의 부정 -->
+		<h4 th:if="${age >= 20}">성인이다</h4>
+		<h4 th:unless="${age >= 20}">미성년이다.</h4>
+	</th>
+	
+	<h2>5. switch 문</h2>
+	<th:block th:with="season='가을'">
+		<div th:switch="${season}">
+			<h3 th:case="봄">따뜻하다</h3>
+			<h3 th:case="여름">덥다</h3>
+			<h3 th:case="가을">시원하다</h3>
+			<h3 th:case="겨울">춥다</h3>
+			<h3 th:case="*">잘못 된 계절</h3>
+		</div>
+	</th:block>
+</body>	
+</html>
