@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,7 +19,7 @@ public class RealtorController {
 	@Autowired
 	private RealtorService realtorService;
 
-	@GetMapping("/create")
+	@PostMapping("/create")
 	public String createRealtor(
 			@RequestParam("office") String office
 			, @RequestParam("phoneNumber") String phoneNumber
@@ -32,7 +33,7 @@ public class RealtorController {
 		realtor.setAddress(address);
 		realtor.setGrade(grade);
 		
-		int count = realtorService.addRealtor(realtor);
+		realtorService.addRealtor(realtor);
 				
 		model.addAttribute("realtor", realtor);
 		
