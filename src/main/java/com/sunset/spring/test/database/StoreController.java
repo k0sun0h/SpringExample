@@ -25,7 +25,7 @@ public class StoreController {
 		List<Store> storeList = storeService.getStoreList();
 		// 가게 리스트 response에 담기 
 		return storeList;
-				
+		
 	}
 	
 }

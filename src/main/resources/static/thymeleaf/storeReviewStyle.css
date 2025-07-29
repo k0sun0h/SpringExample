@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+#wrap {
+	height: 1000px;
+	width: 600px;
+}
+
+header {
+	height: 70px;
+	width: auto;
+}
+
+.store-link:hover {
+    text-decoration: none;
+    color: #1b91a9;
+}
+
+.menu {
+	background-color: lightgray;
+}
+
+footer {
+	height: 60px;
+}
+
+footer .first-text {
+	font-size: 17px;
+}
+
+footer .second-text {
+	color: gray;
+	font-size: 12px;
+}
