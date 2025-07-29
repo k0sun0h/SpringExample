@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+#wrap {
+    width: 1200px;
+}
+
+.contents nav {
+    width: 200px;
+    background-color: #6495ED;
+}
+
+.contents article {
+    width: 1000px;
+}
+
+footer {
+    height: 120px;
+    padding: 20px;
+    font-size: 12px;
+}
+
+.footer-text {
+    margin-left: 20px;
+    margin-top: 10px;
+}
