@@ -16,8 +16,10 @@ public class AjaxController {
 		return "ajax/ex01";
 	}
 	
+	// API(response에 데이터가 담김) <-> View(html이 담김)
 	// 이름과 생년월일을 전달 받고 , 이름과 나이를 json으로 response에 담는 기능
-	@GetMapping("/ajax/person")
+	// 응답에 데이터(json)만 포함시킴
+	@GetMapping("/ajax/user")
 	@ResponseBody
 	public Map<String, Object> personInfo(
 			@RequestParam("name") String name

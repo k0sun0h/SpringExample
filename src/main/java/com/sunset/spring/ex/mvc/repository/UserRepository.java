@@ -14,7 +14,8 @@ public interface UserRepository {
 	 public int insertUser(
 			 @Param("name") String name
 			 , @Param("birthday") String birthday
-			 , @Param("email") String email);
+			 , @Param("email") String email
+			 , @Param("introduce") String introduce);
 	 
 	 public int insertUserByObject(User user);
 }

@@ -1,4 +1,8 @@
-package com.sunset.spring.ex.mvc;
+package com.sunset.spring.ex.ajax;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,52 +11,55 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sunset.spring.ex.mvc.domain.User;
 import com.sunset.spring.ex.mvc.service.UserService;
 
 @Controller
-@RequestMapping("/mvc/user")
-public class UserController {
+@RequestMapping("/ajax/user")
+public class NewUserController {
 	
 	@Autowired
 	private UserService userService;
 
-	// 가장 최근 등록한 사용자 정보를 html로 response에 담는다.
-	@GetMapping("/info")
-	public String userInfo(Model model) {
-		// 가장 최근에 등록한 사용자 정보 얻어오기
-		User user = userService.getLastUser();
-		
-		// Model
-		model.addAttribute("title", "가장 최근 등록 사용자");
-		model.addAttribute("result", user);
-		
-		return "mvc/userInfo";
-	}
-	
+	// response가 json 데이터 형태인 페이지 
+	// 사용자 추가 API 
 	@PostMapping("/create")
-	public String createUser(
+	@ResponseBody
+	public Map<String, String> createUser(
 			@RequestParam("name") String name
 			, @RequestParam("birthday") String birthday
 			, @RequestParam("email") String email
-			, @RequestParam("introduce") String introduce
-			, Model model) {
-
+			, @RequestParam("introduce") String introduce) {
+		
 		User user = new User();
 		user.setName(name);
-		user.setYyyymmdd(birthday);
+		user.setBirthday(birthday);
 		user.setEmail(email);
 		user.setIntroduce(introduce);
 		
-		int count = userService.addUserByObject(user);
-		model.addAttribute("result", user);
+		int count = userService.addUser(name, birthday, email, introduce);
 		
-		return "mvc/userInfo";
+		// 성공실패 여부 
+		// 성공 : {"result":"success"}
+		// 실패 : {"result":"fail"}
+		Map<String, String> resultMap = new HashMap<>();
+		if(count == 1) { // 성공
+			resultMap.put("result", "success");
+			 
+		} else { // 실패
+			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
 	}
-			
+	
+	// 입력 화면 view
 	@GetMapping("/input")
 	public String inputUser() {
-		return "mvc/userInput";
+		
+		return "ajax/Input";
+
 	}
 }

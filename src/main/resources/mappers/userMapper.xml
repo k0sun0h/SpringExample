@@ -30,12 +30,14 @@
 			`name`
 			, `yyyymmdd`
 			, `email`
+			, `introduce`
 		)
 		VALUE 
 		(
 			#{name}
 			, #{birthday}
 			, #{email}
+			, #{introduce}
 		)
 	
 	</insert>
@@ -49,12 +51,14 @@
 			`name`
 			, `yyyymmdd`
 			, `email`
+			, `introduce`
 		)
 		VALUE 
 		(
 			#{name}
-			, #{yyyymmdd}
+			, #{birthday}
 			, #{email}
+			, #{introduce}
 		)
 	</insert>
 </mapper>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta charset="UTF-8">
+<title>사용자 추가</title>
+</head>
+<body>
+	<h3>사용자 추가</h3>
+	
+	<label>이름 : </label> <input type="text" id="nameInput"> <br>
+	<label>생년월일 : </label> <input type="text" id="birthdayInput"> <br>
+	<label>이메일 : </label> <input type="text" id="emailInput"> <br>
+	<label>자기소개</label> <br>
+	<textarea rows="5" cols="50" id="introduceInput"></textarea> <br>
+	<button type="button" id="addBtn">추가</button>
+
+	<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+  	<script>
+  		$(document).ready(function() {
+  			
+  			// 추가버튼이 클릭되면
+  			$("#addBtn").on("click", function() {
+  				// 입력 값을 얻어 와서
+  				let name = $("#nameInput").val();
+  				let birthday = $("#birthdayInput").val();
+  				let email = $("#emailInput").val();
+  				let introduce = $("#introduceInput").val();
+  			
+  				// 유효성 검사 (Validation)
+  				if(name == "") {
+  					alert("이름을 입력하세요!");
+  					return ;
+  				}
+  				
+  				if(birthday == "") {
+  					alert("생년월일을 입력하세요!");
+  					return ;
+  				}
+  				
+  				if(email == "") {
+  					alert("이메일을 입력하세요!");
+  					return ;
+  				}
+  				
+  				if(introduce == "") {
+  					alert("자기소개를 입력하세요!");
+  					return ;
+  				}
+  				
+  	  			// create API 호출한다
+  	  			$.ajax({
+  	  				type:"post"
+  	  				, url:"/ajax/user/create"
+  	  				, data:{"name":name, "birthday":birthday, "email":email, "introduce":introduce}
+  	  				, success:function(response) {
+  	  				// 성공 : {"result":"success"}
+  	  				// 실패 : {"result":"fail"}
+  	  					if(response.result == "success") {
+  	  						// 성공
+  	  						alert("추가 성공!!");
+  	  					} else {
+  	  						// 실패
+  	  						alert("추가 실패!!");
+  	  					}
+  	  				}
+  	  				, error:function() {
+  	  					alert("추가 에러!!");
+  	  				}
+  	  			});
+  			});
+  		});
+  	</script>
+</body>
+</html>

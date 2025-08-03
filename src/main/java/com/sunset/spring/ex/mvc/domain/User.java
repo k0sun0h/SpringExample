@@ -6,7 +6,7 @@ public class User {
 
 	private int id;
 	private String name;
-	private String yyyymmdd;
+	private String birthday;
 	private String email;
 	private String introduce;
 	private LocalDateTime createdAt;
@@ -24,11 +24,11 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getYyyymmdd() {
-		return yyyymmdd;
+	public String getBirthday() {
+		return birthday;
 	}
-	public void setYyyymmdd(String yyyymmdd) {
-		this.yyyymmdd = yyyymmdd;
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 	public String getEmail() {
 		return email;

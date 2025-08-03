@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AJAX 예제</title>
+</head>
+<body>
+	<h3>사용자 추가</h3>
+
+	<label>이름 : </label> <input type="text" id="nameInput"> <br>
+	<label>나이 : </label> <input type="text" id="birthdayInput"> <br>
+	<button type="button" id="inputBtn">입력</button>
+
+	<h2 id="nameH"></h2>
+	<h2 id="ageH"></h2>
+	
+	<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+  	<script>
+  		$(document).ready(function() {
+  			
+  			// 추가버튼이 클릭되면
+  			$("#inputBtn").on("click", function() {
+  				// 입력 값을 얻어 와서
+  				let name = $("#nameInput").val();
+  				let birthday = $("#birthdayInput").val();
+  				
+  	  			// create API 호출한다
+  	  			$.ajax({
+  	  				type:"get"
+  	  				, url:"/ajax/user"
+  	  				, data:{"name":name, "birthday":birthday}
+  	  				, success:function(response) {
+  	  				// 응답이 정상적으로 전달되었을때 수행할 기능
+  	  				// 해당 함수의 파라미터를 통해 response body 데이터를 전달받는다
+  	  				// json 문자열 : {"name":"김인규", "age":25}
+  	  				// response body에 담긴 json 문자열을 js에서 손쉽게 사용하도록
+  	  				// json 문자열을 js 객체로 변환해준다
+
+  	  				$("#nameH").text(response.name);
+					$("#ageH").text(response.age);
+  	  				}
+  	  				, error:function() {
+  	  					alert("추가 에러!!");
+  	  				}
+  	  			});
+  			});
+  		});
+  	</script>
+</body>
+</html>
