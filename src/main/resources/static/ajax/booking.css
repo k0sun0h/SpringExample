@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+#wrap {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    height: 150px;
+}
+
+nav {
+    height: 40px;
+    background-color: peru;
+}
+
+nav ul li a:hover {
+    background: darkred;
+}
+
+.main-banner {
+    height: 500px;
+}
+
+.reservation {
+    height:300px; 
+    width:400px; 
+    background-color:sienna;
+     color:white;
+}
+
+.reservation-confirm {
+    height:300px;  
+    width:500px; 
+    background-color:chocolate; 
+    color:white;
+}
+
+.input-name {
+	margin-right: 30px;
+}
+
+.input-phoneNumber {
+	margin-right: 15px;
+}
+
+.contact {
+    height: 300px;
+    width: 300px;
+    background-color: sienna;
+}
+
+footer {
+    height: 100px;
+}

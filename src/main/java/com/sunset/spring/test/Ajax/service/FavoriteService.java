@@ -21,4 +21,29 @@ public class FavoriteService {
 		return favoriteList;
 	}
 	
+	public int addFavorite(String name, String url) {
+		
+		int count = favoriteRepository.insertFavorite(name, url);
+		
+		return count;
+	}
+	
+	// 1. url 중복 확인 기능
+	public boolean isDuplicateUrl(String url) {
+		
+		int count = favoriteRepository.selectCountUrl(url);
+		
+		return count >= 1;
+		
+	}
+	
+	// 2. 삭제 기능
+	public int deleteFavorite(int id) {
+		
+		int count = favoriteRepository.deleteFavorite(id);
+		
+		return count;
+		
+	}
+	
 }

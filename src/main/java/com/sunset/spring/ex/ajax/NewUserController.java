@@ -62,4 +62,29 @@ public class NewUserController {
 		return "ajax/Input";
 
 	}
+	
+	// email 중복여부를 알려주는 API
+	@GetMapping("/duplicate-email")
+	@ResponseBody
+	public Map<String, Boolean> isDuplicateEmail(
+			@RequestParam("email") String email) {
+		
+		// email의 중복 여부 확인 
+		boolean isDuplicate = userService.isDuplicateEmail(email);
+		
+		// 중복됨 :  {"isDuplicate":true}
+		// 중복 안됨 : {"isDuplicate":false}
+		
+		Map<String, Boolean> resultMap = new HashMap<>();
+		
+		if(isDuplicate) {
+			// 중복됨
+			resultMap.put("isDuplicate", true);
+		} else {
+			// 중복 안됨
+			resultMap.put("isDuplicate", false);
+		}
+		
+		return resultMap;
+	}
 }

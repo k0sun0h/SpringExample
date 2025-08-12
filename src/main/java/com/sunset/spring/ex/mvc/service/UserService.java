@@ -29,4 +29,17 @@ public class UserService {
 		int count = userRepository.insertUserByObject(user);
 		return count;
 	}
+	
+// email을 전달 받고 중복여부를 리턴하는 기능
+	public boolean isDuplicateEmail(String email) {
+		
+		int count = userRepository.selectCountEmail(email);
+		
+		if(count >= 1) {
+			return true;
+		} else {
+			return false;
+		}
+		 
+	}
 }

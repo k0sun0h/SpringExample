@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.sunset.spring.test.Ajax.repository.BookingRepository">
+
+	<select id="selectBookingList" 
+	resultType="com.sunset.spring.test.Ajax.domain.Booking">
+		SELECT 
+			`id`
+			, `name`
+			, `date`
+			, `headcount`
+			, `day`
+			, `phoneNumber`
+			, `state`
+			, `createdAt`
+			, `updatedAt`
+		FROM 
+			`booking`
+	</select>
+	
+	<insert id="insertBooking" parameterType="map">
+		INSERT INTO
+			`booking`
+		(
+			`name`
+			, `date`
+			, `headcount`
+			, `day`
+			, `phoneNumber`
+			, `state`
+		)
+		VALUE 
+		(
+			#{name}
+			, #{date}
+			, #{headcount}
+			, #{day}
+			, #{phoneNumber}
+			, #{state}
+		)
+	</insert>
+	
+	<delete id="deleteBooking" parameterType="int">
+		DELETE FROM 
+			`booking`
+		WHERE 
+			`id` = #{id}
+	</delete>
+	
+	<select id="selectBooking" parameterType="map"
+	resultType="com.sunset.spring.test.Ajax.domain.Booking">
+		SELECT 
+			`id`
+			, `name`
+			, `headcount`
+			, `day`
+			, `date`
+			, `phoneNumber`
+			, `state`
+			, `createdAt`
+			, `updatedAt`
+		FROM 
+			`booking`
+		WHERE
+			`name` = #{name}
+			AND `phoneNumber` = #{phoneNumber}
+	</select>
+	
+</mapper>

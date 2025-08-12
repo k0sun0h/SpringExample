@@ -14,6 +14,7 @@
 					<th>No.</th>
 					<th>이름</th>
 					<th>주소</th>
+					<th></th>
 				</tr>
 			</thead>
 			
@@ -23,11 +24,48 @@
 					<td th:text="${status.count}">20</td>
 					<td th:text="${favorite.name}">마론달</td>
 					<td th:text="${favorite.url}">http://marondal.com</td>
+					<!-- 버튼 태그에 삭제 대상 id 속성이 부여된 상태 data-favorite-id -->
+					<td><button type="button" th:value="${favorite.id}" class="btn btn-danger delete-btn">삭제</button></td>
 				</tr>
-				
+			
 			</tbody>
 		
 		</table>
 	</div>
+	
+	<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function() {
+			
+			$(".delete-btn").on("click", function() {
+				
+				// 이벤트가 발생한 그 버튼 태그의 value 속성 값을 가져옴 -> 삭제 대상의 id를 얻어 올 수 있음
+				let favoriteId = $(this).val();
+				
+				$.ajax({
+					type:"get"
+					, url:"/ajax/favorite/delete"
+					, data:{"id":favoriteId}
+					, success:function(response) {
+						// 성공 : {"result":"success"}
+						// 실패 : {"result":"fail"}
+						if(response.result == "success") {
+							// 새로고침
+							location.reload();
+						} else {
+							alert("삭제 실패");
+						}
+						
+					}
+					, error:function() {
+						alert("삭제 에러");
+					}
+				});
+			});
+		});
+	</script>
 </body>
 </html>
