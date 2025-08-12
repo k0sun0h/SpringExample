@@ -41,7 +41,7 @@ public class UserController {
 
 		User user = new User();
 		user.setName(name);
-		user.setYyyymmdd(birthday);
+		user.setBirthday(birthday);
 		user.setEmail(email);
 		user.setIntroduce(introduce);
 		
